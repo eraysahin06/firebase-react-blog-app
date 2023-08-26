@@ -10,7 +10,7 @@ import CreatePost from './pages/CreatePost';
 import Login from './pages/Login';
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
 
   const navigate = useNavigate();
 
