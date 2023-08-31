@@ -6,26 +6,29 @@ const Home = ({ isAuth }) => {
   const [postLists, setPostLists] = useState([]);
   const postsCollectionRef = collection(db, 'posts');
 
-  const deletePost = async (id) => {
-    const postDoc = doc(db, 'posts', id);
-    await deleteDoc(postDoc);
-    // After deleting the post, update the state to reflect the changes
-    setPostLists(postLists.filter((post) => post.id !== id));
+  const removePost = async (id) => {
+    const postDocRef = doc(db, 'posts', id);
+    await deleteDoc(postDocRef);
+    const updatedPostLists = postLists.filter((post) => post.id !== id);
+    setPostLists(updatedPostLists);
   };
 
   useEffect(() => {
-    const getPosts = async () => {
-      const data = await getDocs(postsCollectionRef);
-      const postsData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    const fetchPosts = async () => {
+      const querySnapshot = await getDocs(postsCollectionRef);
+      const postsData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
       setPostLists(postsData);
     };
-    getPosts();
-  }, []); // Run this effect only once on component mount
+    fetchPosts();
+  }, [postsCollectionRef]);
 
   return (
     <div className="homePage">
       {postLists.map((post) => {
-        const isCurrentUserAuthor =
+        const isCurrentUserPostAuthor =
           isAuth && post.author.id === auth.currentUser?.uid;
         return (
           <div className="post" key={post.id}>
@@ -34,10 +37,10 @@ const Home = ({ isAuth }) => {
                 <h1>{post.title}</h1>
               </div>
               <div className="deletePost">
-                {isCurrentUserAuthor && (
+                {isCurrentUserPostAuthor && (
                   <button
                     onClick={() => {
-                      deletePost(post.id);
+                      removePost(post.id);
                     }}
                   >
                     &#128465;
