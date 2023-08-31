@@ -1,5 +1,6 @@
 import './App.css';
 import { Routes, Route, Link } from 'react-router-dom';
+import { RxPencil2 } from 'react-icons/rx';
 import { useState } from 'react';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -25,14 +26,23 @@ function App() {
   return (
     <div>
       <nav>
-        <Link to={'/'}>Home </Link>
+        <div className="logo">
+          <Link className="logo-btn" to={'/'}>
+            <RxPencil2 className="pencil-logo" />
+            Logic<span>Blog</span>
+          </Link>
+        </div>
         {!isAuth ? (
           <Link to={'/login'}>Login </Link>
         ) : (
-          <>
-            <Link to={'/createpost'}>Create Post </Link>
-            <button onClick={signUserOut}>Log out</button>
-          </>
+          <div>
+            <Link className="create-btn" to={'/createpost'}>
+              Add Post +
+            </Link>
+            <button className="logout-btn" onClick={signUserOut}>
+              Log out
+            </button>
+          </div>
         )}
       </nav>
       <Routes>

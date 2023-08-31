@@ -5,15 +5,16 @@ body {
   padding: 0%;
   margin: 0%;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(134, 134, 134);
 }
 
 nav {
   margin: 0;
   width: 100%;
   height: 80px;
-  background-color: black;
+  background-color: rgb(80, 80, 80);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: white;
   text-decoration: none;
@@ -35,9 +36,10 @@ a {
 
 .cpContainer {
   width: 500px;
+  max-width: 500px;
   height: auto;
   padding: 20px;
-  background-color: black;
+  background-color: rgb(53, 53, 53);
   border-radius: 12px;
   color: white;
   display: flex;
@@ -46,6 +48,7 @@ a {
 
 .cpContainer h1 {
   text-align: center;
+  border-bottom: 2px solid white;
 }
 
 .cpContainer label {
@@ -79,10 +82,31 @@ a {
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
+  background-color: #49bf4d;
 }
 input,
 textarea {
   margin-top: 5px;
+  font-family: 'Arial';
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  border: none;
+  border: 3px solid #1add20;
+  border-radius: 10px;
+}
+
+.cpContainer button:hover {
+  background-color: #1add20;
+  color: #fff;
 }
 
 .loginPage {
@@ -160,8 +184,15 @@ textarea {
   width: 100%;
 }
 
+h1 {
+  margin: 0;
+}
+
 .postHeader .title {
   flex: 50%;
+  border-bottom: 2px solid #000;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 .postHeader .deletePost {
   flex: 50%;
@@ -185,4 +216,63 @@ textarea {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
+  background-color: #fbfbfb;
+}
+
+.create-btn {
+  border: 2px solid #49bf4d;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #49bf4d;
+  color: black;
+}
+
+.create-btn:hover {
+  border: 2px solid #5eec65;
+  background-color: #5eec65;
+  color: #000;
+}
+
+.logout-btn {
+  background-color: inherit; /* Green */
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: rgb(91, 15, 15);
+}
+
+.logo-btn {
+  border: 3px solid #49bf4d;
+  padding: 10px;
+  border-radius: 10px;
+  width: 150px;
+  font-weight: 700;
+}
+
+.logo-btn span {
+  color: #49bf4d;
+}
+
+.pencil-logo {
+  margin-right: 10px;
+  color: #49bf4d;
+}
+
+.author-name {
+  border: 2px solid #000;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px 0;
+  background-color: rgb(222, 222, 222);
+  text-align: center;
 }

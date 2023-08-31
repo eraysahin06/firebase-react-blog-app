@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore';
+import { MdOutlineDeleteSweep } from 'react-icons/md';
 import { db, auth } from '../firebase-config';
 
 const Home = ({ isAuth }) => {
@@ -30,6 +31,13 @@ const Home = ({ isAuth }) => {
       {postLists.map((post) => {
         const isCurrentUserPostAuthor =
           isAuth && post.author.id === auth.currentUser?.uid;
+        const fullName = post.author?.name;
+        let username = '';
+
+        if (fullName) {
+          // Remove spaces and convert to lowercase
+          username = fullName.replace(/\s+/g, '').toLowerCase();
+        }
         return (
           <div className="post" key={post.id}>
             <div className="postHeader">
@@ -43,13 +51,13 @@ const Home = ({ isAuth }) => {
                       removePost(post.id);
                     }}
                   >
-                    &#128465;
+                    <MdOutlineDeleteSweep />
                   </button>
                 )}
               </div>
             </div>
             <div className="postTextContainer">{post.postText}</div>
-            <h3>@{post.author?.name}</h3>
+            <h3 className="author-name">@{username}</h3>
           </div>
         );
       })}
