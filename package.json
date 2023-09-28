@@ -1,6 +1,6 @@
 {
   "name": "blog-app",
-  "homepage": ".",
+  "homepage": "https://firebase-react-blog-app.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
